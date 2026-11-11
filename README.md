@@ -11,7 +11,7 @@ Open the local URL Vite prints in the terminal. The layout is designed for mobil
 
 ## Add your photos
 
-The 26 photos supplied in `pics/` are copied into `public/photos/` as `memory-01.jpeg` through `memory-26.jpeg` and shown in order in the gallery. Captions can be edited in `src/App.jsx`.
+The 26 original photos and nine additional Sweet Moments photos are included in `public/photos/` as `memory-01.jpeg` through `memory-35.jpeg` and shown in order in the gallery. Captions can be edited in `src/App.jsx`.
 
 Put the supplied rose-and-sunflower bouquet photo at `public/images/bouquet.jpg`. The bouquet scene will use it in place of the animated illustration; while the file is missing, the illustration remains as a fallback.
 
@@ -20,6 +20,8 @@ The candle scene uses the supplied cake illustration at `public/images/birthday-
 The seven images from `goel/` are included in `public/goel/` and rotate every three seconds on the second-last “The End Goal: With You” screen.
 
 The attached birthday video is included at `public/videos/birthday-surprise.mp4`. It uses on-demand playback (`preload="none"`) and only starts loading after the play button is tapped.
+
+The supplied birthday song is included at `public/audio/birthday-music.mp3`. It loops at low background volume after the first welcome-screen tap, pauses while the video plays, and stops on the final gift screen. The speaker button in the app bar can mute or resume it.
 
 ## Deploy on GitHub Pages
 
