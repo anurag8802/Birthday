@@ -2,18 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ArrowLeft, ArrowRight, Heart, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 
+const publicAsset = (path) => `${import.meta.env.BASE_URL}${path}`;
 const photos = Array.from({ length: 35 }, (_, index) => ({
-  src: `/photos/memory-${String(index + 1).padStart(2, '0')}.jpeg`,
+  src: publicAsset(`photos/memory-${String(index + 1).padStart(2, '0')}.jpeg`),
 }));
 const goalPhotos = [
-  '/goel/goal-01.jpeg',
-  '/goel/goal-02-wedding.jpeg',
-  '/goel/goal-02.jpeg',
-  '/goel/goal-03.jpeg',
-  '/goel/goal-04.jpeg',
-  '/goel/goal-05.jpeg',
-  '/goel/goal-06.jpeg',
-  '/goel/goal-07.jpeg',
+  publicAsset('goel/goal-01.jpeg'),
+  publicAsset('goel/goal-02-wedding.jpeg'),
+  publicAsset('goel/goal-02.jpeg'),
+  publicAsset('goel/goal-03.jpeg'),
+  publicAsset('goel/goal-04.jpeg'),
+  publicAsset('goel/goal-05.jpeg'),
+  publicAsset('goel/goal-06.jpeg'),
+  publicAsset('goel/goal-07.jpeg'),
 ];
 const goalCaptions = ['The end goal', 'Our wedding day', 'Bringing our families together', 'A little home of our own', 'Our own little family', 'Seeing the world side by side', 'Making each other’s dreams come true', 'Choosing each other, even after a disagreement'];
 const captions = ['Celebrating you', 'Make a wish', 'Happy birthday!', 'Little moments, big memories', 'My favorite person', 'Here for every adventure', 'A day as lovely as you', 'More reasons to smile', 'The best kind of company', 'Keep shining', 'A memory to keep', 'You make life sweeter', 'Always in my corner', 'Here is to your next chapter', 'So lucky to know you', 'The best days are ours', 'My favorite smile', 'Side by side, always', 'A little bit of magic', 'Everyday feels brighter', 'Our kind of happy', 'A moment worth keeping', 'Still my favorite view', 'More memories to make', 'You and me, just right', 'To all the days ahead', 'A little sunshine together', 'Your beautiful smile', 'Right where I belong', 'Lost in your smile', 'Just us', 'My favorite people', 'A little mischief', 'Our kind of date', 'Happy looks good on us'];
@@ -358,7 +359,7 @@ export default function App() {
 
   return (
     <main className={`app-shell step-${step}`}>
-      <audio ref={backgroundAudioRef} src="/audio/birthday-music.mp3" preload="none" loop />
+      <audio ref={backgroundAudioRef} src={publicAsset('audio/birthday-music.mp3')} preload="none" loop />
       <div className="ambient ambient-one" aria-hidden="true" /><div className="ambient ambient-two" aria-hidden="true" />
       {step > 0 && <div className="welcome-decor story-decor" aria-hidden="true"><i>✦</i><i>♡</i><i>♥</i><i>✧</i><i>♥</i><i>♡</i><i>✦</i><i>♥</i><i>✧</i><i>♡</i><i>♥</i><i>✦</i></div>}
       {confetti && <div className="confetti" aria-hidden="true">{Array.from({ length: 34 }, (_, i) => <i key={i} />)}</div>}
@@ -383,13 +384,13 @@ export default function App() {
 
       {step === 2 && <section className="scene candle-scene" key="candle">
         <div className="scene-heading"><p className="eyebrow">Make a wish</p><h2>Blow out your candle, <em>Kumkum</em></h2><p className="scene-subtitle">A wish made today deserves to come true.</p></div>
-        <button className={`single-cake ${candleOut ? 'blown' : ''}`} onClick={blowOutCandle} aria-label={candleOut ? 'Candle blown out' : 'Tap to blow out the candle'}><img src="/images/birthday-cake.png" alt="A birthday cake for Kumkum" /></button>
+        <button className={`single-cake ${candleOut ? 'blown' : ''}`} onClick={blowOutCandle} aria-label={candleOut ? 'Candle blown out' : 'Tap to blow out the candle'}><img src={publicAsset('images/birthday-cake.png')} alt="A birthday cake for Kumkum" /></button>
         {!candleOut && <button className="tap-bar" onClick={blowOutCandle}>✧ <span>Tap the candle to blow</span></button>}
       </section>}
       {step === 2 && candleOut && createPortal(<div className="wish-screen" role="dialog" aria-modal="true" aria-label="Make a birthday wish"><div className="wish-card"><span className="wish-card-star">✦</span><p className="wish-card-eyebrow">A moment just for you</p><h2>Close your eyes<br />&amp; make a wish</h2><p className="wish-card-note">Take a quiet breath and wish for something wonderful.</p><button className="button wish-confirm" onClick={() => { setConfetti(true); setStep(3); }}>Wish made <Heart size={16} fill="currentColor" /></button></div></div>, document.body)}
 
       {step === 3 && <section className="scene roses-scene" key="roses"><div className="scene-heading align-left"><p className="eyebrow">A bouquet, just for you</p><h2>Your rose &amp; sunflower bouquet<span className="rose-mark">✿</span></h2></div>
-        <img className="bouquet-photo" src="/images/bouquet.jpg" alt="A red rose and sunflower bouquet" onLoad={() => setBouquetImageLoaded(true)} onError={(event) => { event.currentTarget.hidden = true; }} />
+        <img className="bouquet-photo" src={publicAsset('images/bouquet.jpg')} alt="A red rose and sunflower bouquet" onLoad={() => setBouquetImageLoaded(true)} onError={(event) => { event.currentTarget.hidden = true; }} />
         {!bouquetImageLoaded && <div className="bouquet-art" role="img" aria-label="A hand-tied bouquet of red roses and yellow sunflowers">
         <div className="bouquet-foliage">{Array.from({ length: 11 }, (_, index) => <i key={index} style={{ '--leaf-index': index }} />)}</div>
         <div className="bouquet-stems"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
@@ -419,7 +420,7 @@ export default function App() {
 
       {step === 7 && <section className="scene goal-scene" key="goal"><div className="scene-heading"><p className="eyebrow">A future I dream of</p><h2>The End Goal: With You</h2><p className="scene-subtitle">Every little dream is better when it’s with you.</p></div><div className="goal-photo-frame" aria-live="polite"><img key={goalPhotoIndex} src={goalPhotos[goalPhotoIndex]} alt={goalCaptions[goalPhotoIndex]} /><div className="goal-photo-caption">{goalCaptions[goalPhotoIndex]}</div><span className="goal-photo-count">{String(goalPhotoIndex + 1).padStart(2, '0')} / {goalPhotos.length}</span></div><div className="goal-dots" aria-label={`Future photo ${goalPhotoIndex + 1} of ${goalPhotos.length}`}>{goalPhotos.map((photo, index) => <button key={photo} className={goalPhotoIndex === index ? 'active' : ''} onClick={() => setGoalPhotoIndex(index)} aria-label={`Show future photo ${index + 1}`} />)}</div><button className="button button-primary scene-cta" onClick={() => setStep(8)}>One last thing <ArrowRight size={17} /></button></section>}
 
-      {step === 8 && <section className="scene video-scene" key="video"><div className="scene-heading"><p className="eyebrow">One last thing, but not the least</p><h2>A little video for you</h2><p className="scene-subtitle">Tap play, sit back, and listen.</p></div><div className={`surprise-video-frame ${videoStarted ? 'playing' : ''}`}><video ref={videoRef} src="/videos/birthday-surprise.mp4" controls playsInline preload="none" muted={false} onPlay={() => { backgroundAudioRef.current?.pause(); setVideoStarted(true); }} onPause={() => setVideoStarted(false)} onEnded={() => setVideoStarted(false)} aria-label="A special birthday video for Kumkum" />{!videoStarted && <button className="video-play-button" onClick={playSurpriseVideo} aria-label="Play your birthday video"><span><Play size={25} fill="currentColor" /></span><b>Play your video</b></button>}</div><p className="video-note">Made with love, just for you ♥</p><button className="button button-primary scene-cta" onClick={() => { videoRef.current?.pause(); setStep(9); }}>One last thing <ArrowRight size={17} /></button></section>}
+      {step === 8 && <section className="scene video-scene" key="video"><div className="scene-heading"><p className="eyebrow">One last thing, but not the least</p><h2>A little video for you</h2><p className="scene-subtitle">Tap play, sit back, and listen.</p></div><div className={`surprise-video-frame ${videoStarted ? 'playing' : ''}`}><video ref={videoRef} src={publicAsset('videos/birthday-surprise.mp4')} controls playsInline preload="none" muted={false} onPlay={() => { backgroundAudioRef.current?.pause(); setVideoStarted(true); }} onPause={() => setVideoStarted(false)} onEnded={() => setVideoStarted(false)} aria-label="A special birthday video for Kumkum" />{!videoStarted && <button className="video-play-button" onClick={playSurpriseVideo} aria-label="Play your birthday video"><span><Play size={25} fill="currentColor" /></span><b>Play your video</b></button>}</div><p className="video-note">Made with love, just for you ♥</p><button className="button button-primary scene-cta" onClick={() => { videoRef.current?.pause(); setStep(9); }}>One last thing <ArrowRight size={17} /></button></section>}
 
       {step === 9 && <section className="scene gift-scene" key="gift"><div className="scene-heading"><p className="eyebrow">Just when you thought we were done</p><h2>One last thing<span className="ellipsis">...</span></h2><p className="scene-subtitle">A little gift, wrapped up with love.</p></div>{!giftOpen ? <button className="gift-box" onClick={() => { setGiftOpen(true); setConfetti(true); }} aria-label="Open your birthday gift"><span className="gift-lid" /><span className="gift-body"><i /></span><span className="gift-ribbon" /><span className="gift-bow">🎀</span></button> : <div className="final-surprise" aria-live="polite"><div className="final-card"><span className="final-sticker">♥</span><div className="final-doodle">🐰　🐻</div><p className="script-line">Lots of love for you</p><p>Once again, happy birthday, Kukki!!<br />I Love You So Much ❤️🥹🫶🏻💖✨😘🌹💋.</p></div><button className="button button-quiet replay-button" onClick={reset}><RotateCcw size={15} /> Replay</button><div className="final-links"><span>Pass the birthday magic along</span><a href="https://heartcraft.app" target="_blank" rel="noreferrer">Write a heartfelt love letter <ArrowRight size={16} /></a></div></div>}{!giftOpen && <p className="gift-hint">Tap your gift</p>}</section>}
       {step > 0 && <footer className="page-footer"><span>✦</span> A LITTLE JOY, MADE FOR KUMKUM <span>✦</span></footer>}
