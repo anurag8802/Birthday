@@ -21,7 +21,7 @@ The seven images from `goel/` are included in `public/goel/` and rotate every th
 
 The attached birthday video is included at `public/videos/birthday-surprise.mp4`. It uses on-demand playback (`preload="none"`) and only starts loading after the play button is tapped.
 
-The supplied birthday song is included at `public/audio/birthday-music.mp3`. It loops at low background volume after the first welcome-screen tap, pauses while the video plays, and stops on the final gift screen. The speaker button in the app bar can mute or resume it.
+The supplied “I Love You Bodyguard” song is included at `public/audio/birthday-music.mp3`. It loops at low background volume after the first welcome-screen tap, pauses while the video plays, and stops on the final gift screen. The speaker button in the app bar can mute or resume it.
 
 ## Deploy on GitHub Pages
 
